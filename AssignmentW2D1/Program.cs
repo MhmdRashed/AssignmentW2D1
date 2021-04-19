@@ -16,7 +16,7 @@ namespace AssignmentW2D1
             }
             public JSONBuilder beginBracket(string value)
             {
-                this.html += "{\"" + value + "\":" ;
+                this.html += "{\"" + value + "\":";
                 return this;
             }
             public JSONBuilder setContent(string value)
@@ -38,19 +38,20 @@ namespace AssignmentW2D1
 
         public static bool isMatched(string numbers)
         {
-            int len = numbers.Length;
-
             Stack stk = new Stack();
-
             char tmp;
 
-            if(numbers.Length % 2 == 0)
+            if (numbers.Length % 2 == 0)
             {
-
                 for (int i = 0; i < numbers.Length; i++)
                 {
+                    if (stk.Count == 0)
+                    {
+                        stk.Push(numbers[i]);
+                        continue;
+                    }
 
-                    stk.Push(numbers[i]);
+
                     tmp = (char)stk.Peek();
 
                     if (tmp == numbers[i])
@@ -61,11 +62,7 @@ namespace AssignmentW2D1
                     {
                         stk.Push(numbers[i]);
                     }
-                    
                 }
-
-
-                Console.WriteLine("ANS: " + stk.Count); 
                 if (stk.Count == 0) { return true; }
                 else { return false; }
             }
@@ -77,10 +74,6 @@ namespace AssignmentW2D1
         }
 
 
-
-
-
-
         static void Main(string[] args)
         {
             JSONBuilder obj = new JSONBuilder();
@@ -90,14 +83,16 @@ namespace AssignmentW2D1
 
             //=========
 
-            string numbers = "12345678";
+            string numbers = "1221";
             string numbers2 = "123321";
             string numbers3 = "14667741";
-            Console.WriteLine(numbers + "\t" + isMatched(numbers)); ;
-            Console.WriteLine(numbers2 + "\t" + isMatched(numbers)); ;
-            Console.WriteLine(numbers3 + "\t" + isMatched(numbers)); ;
-
-
+            string numbers4 = "12341234";
+            string numbers5 = "78901234";
+            Console.WriteLine(numbers + "\t" + isMatched(numbers));
+            Console.WriteLine(numbers2 + "\t" + isMatched(numbers2));
+            Console.WriteLine(numbers3 + "\t" + isMatched(numbers3));
+            Console.WriteLine(numbers4 + "\t" + isMatched(numbers4));
+            Console.WriteLine(numbers5 + "\t" + isMatched(numbers5));
         }
     }
 }
